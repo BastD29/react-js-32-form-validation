@@ -1,50 +1,29 @@
-import React from 'react'
-import useForm from './hooks/useForm'
+import useForm from './Hooks/useForm';
 
-export default function App() {
+function App() {
 
   const formLogin = () => {
-    console.log('Callback function when form is submitted!');
-    console.log('Form Values', values);
+
+    console.log("Callback function when form is submitted!");
+    console.log("Form Values ", values);
   }
 
-  const { values, errors, handleChange, handleSubmit } = useForm(formLogin);
+  const {handleChange, values,errors,handleSubmit} = useForm(formLogin);
 
   return (
     <div className="App">
-      <form 
-        style={{ display: 'flex', flexDirection: 'column', width: '200px' }}
-        onSubmit={handleSubmit}
-      >
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="E-mail"   
-          onChange={handleChange}
-        />
-        {errors.mail && <p>{errors.email}</p>}
-        <input 
-          minLength='8'
-          type="password" 
-          name="password" 
-          placeholder="password"  
-          onChange={handleChange}
-        />
+      <form onSubmit={handleSubmit}>
+      <input type="email" name="email" placeholder="E-mail"  onChange={handleChange}   />
+        {errors.email && <p>{errors.email}</p>}
+      <input minLength='8' type="password" name="password" placeholder="password"  onChange={handleChange}   />
         {errors.password && <p>{errors.password}</p>}
-        <input 
-          type="text" 
-          name="username" 
-          placeholder="username"  
-          onChange={handleChange}
-        />
+      <input type="text" minLength='5' required name="username" placeholder="username"  onChange={handleChange}   />
         {errors.username && <p>{errors.username}</p>}
-        <input 
-          type="submit" 
-          value="Submit" 
-          className="submit"  
-          onChange={handleChange}
-        />
+      <input type="submit" value="Submit" className="submit"  />
       </form>
+
     </div>
-  )
+  );
 }
+
+export default App;
